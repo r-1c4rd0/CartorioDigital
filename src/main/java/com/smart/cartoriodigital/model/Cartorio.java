@@ -1,13 +1,16 @@
 package com.smart.cartoriodigital.model;
 
+import com.smart.cartoriodigital.dto.CartorioDTO;
 import lombok.*;
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @Entity
 @Getter
 @Setter
+
 
 public class Cartorio {
     @Id
@@ -17,4 +20,25 @@ public class Cartorio {
     private String observacao;
     @OneToMany
     private List<Atribuicao> atribuicoes;
+
+
+    public Cartorio(CartorioDTO cartorioDTO) {
+        id = cartorioDTO.getId();
+        nome = cartorioDTO.getNome();
+        observacao = cartorioDTO.getObservacao();
+        if (cartorioDTO.getAtribuicoes() != null) {
+            atribuicoes = cartorioDTO.getAtribuicoes().stream()
+                    .map(Atribuicao::new)
+                    .collect(Collectors.toList());
+        }
+    }
+
+    public Cartorio() {
+
+    }
+
+    public void updateFromDTO(CartorioDTO cartorioDTO) {
+        this.nome = cartorioDTO.getNome();
+        this.observacao = cartorioDTO.getObservacao();
+    }
 }
