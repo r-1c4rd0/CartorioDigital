@@ -15,6 +15,7 @@ Retorna os detalhes de um cartório específico com base no ID.
 
 Método: GET
 URL: /cartorio/{id}
+
 # Incluir Cartório
 Cria um novo registro de cartório.
 
@@ -44,7 +45,8 @@ Remove um cartório com base no ID.
 
 Método: DELETE
 URL: /cartorio/{id}
-Validações
+
+# Validações
 A API valida a integridade referencial na exclusão e apresenta a mensagem “Registro utilizado em outro cadastro” quando não é possível excluir.
 Também valida tentativas de inclusão e alteração de registro com nome duplicado, apresentando a mensagem “Nome já informado no registro com código {id}” quando relevante.
 Situações do Cartório
@@ -60,13 +62,15 @@ Retorna uma lista de todas as atribuições.
 
 Método: GET
 URL: /atribuicao
+
 # Consultar Atribuição por ID
 Retorna os detalhes de uma atribuição específica com base no ID.
 
 Método: GET
 URL: /atribuicao/{id}
-Incluir Atribuição
-# Cria um novo registro de atribuição.
+
+# Incluir Atribuição
+Cria um novo registro de atribuição.
 
 Método: POST
 URL: /atribuicao
@@ -105,11 +109,13 @@ Retorna uma lista de todas as situações.
 
 Método: GET
 URL: /situacao
+
 # Consultar Situação por ID
 Retorna os detalhes de uma situação específica com base no ID.
 
 Método: GET
 URL: /situacao/{id}
+
 # Incluir Situação
 Cria um novo registro de situação.
 
