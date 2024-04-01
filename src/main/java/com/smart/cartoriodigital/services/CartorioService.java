@@ -41,10 +41,11 @@ public class CartorioService {
     }
 
     @Transactional
-    public CartorioDTO create(CartorioDTO cartorioDTO) {
-        validateNomeDuplicado(null, cartorioDTO.getNome());
-        Cartorio cartorio = new Cartorio(cartorioDTO);
-        return new CartorioDTO(cartorioRepository.save(cartorio));
+    public CartorioDTO create(CartorioDTO cartorio) {
+        validateNomeDuplicado(null, cartorio.getNome());
+        Cartorio cartorio2 = new Cartorio(cartorio);
+
+        return new CartorioDTO(cartorioRepository.save(cartorio2));
     }
 
     @Transactional

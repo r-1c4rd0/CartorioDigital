@@ -32,7 +32,7 @@ public class CartorioController {
         return ResponseEntity.ok(cartorios);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value =  "/{id}")
     public ResponseEntity<CartorioDTO> getCartorioById(@PathVariable Integer id) {
         CartorioDTO cartorio = cartorioService.findById(id);
         return ResponseEntity.ok(cartorio);

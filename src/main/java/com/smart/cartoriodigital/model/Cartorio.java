@@ -1,26 +1,22 @@
 package com.smart.cartoriodigital.model;
 
 import com.smart.cartoriodigital.dto.CartorioDTO;
-import lombok.*;
+import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
 @Entity
-@Getter
-@Setter
-
-
 public class Cartorio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String observacao;
+
     @OneToMany
     private List<Atribuicao> atribuicoes;
-
 
     public Cartorio(CartorioDTO cartorioDTO) {
         id = cartorioDTO.getId();
@@ -38,7 +34,9 @@ public class Cartorio {
     }
 
     public void updateFromDTO(CartorioDTO cartorioDTO) {
-        this.nome = cartorioDTO.getNome();
-        this.observacao = cartorioDTO.getObservacao();
+        if (cartorioDTO != null) {
+            this.nome = cartorioDTO.getNome();
+            this.observacao = cartorioDTO.getObservacao();
+        }
     }
 }
