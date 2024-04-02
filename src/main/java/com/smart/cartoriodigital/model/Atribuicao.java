@@ -9,8 +9,11 @@ import javax.persistence.*;
 public class Atribuicao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(length = 20)
     private String id;
+    @Column(length = 50)
     private String nome;
+
     private Boolean situacao;
     public Atribuicao() {
 

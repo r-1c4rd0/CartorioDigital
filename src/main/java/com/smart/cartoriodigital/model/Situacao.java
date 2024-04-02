@@ -8,6 +8,8 @@ import javax.persistence.*;
 public class Situacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(length = 20)
     private String id;
+    @Column(length = 20)
     private String nome;
 }

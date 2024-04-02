@@ -18,12 +18,14 @@ public class CartorioDTO {
     private Integer id;
     private String nome;
     private String observacao;
+    private Boolean situacao;
     private List<Atribuicao> atribuicoes;
 
     public CartorioDTO(Cartorio cartorio) {
         id = cartorio.getId();
         nome = cartorio.getNome();
         observacao = cartorio.getObservacao();
+        situacao = cartorio.getSituacao();
         atribuicoes = cartorio.getAtribuicoes();
     }
 
