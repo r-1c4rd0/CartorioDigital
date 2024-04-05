@@ -32,7 +32,7 @@ public class Atribuicao {
     public Atribuicao(Atribuicao atribuicao) {
         id = atribuicao.getId();
         nome = atribuicao.getNome();
-        situacao = atribuicao.getSituacao();
+        situacao = true;
     }
 
 

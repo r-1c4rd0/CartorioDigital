@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -66,7 +68,7 @@ public class CartorioService {
         Optional<Cartorio> cartorioOptional = cartorioRepository.findById(id);
         if (cartorioOptional.isPresent()) {
             Cartorio cartorio = cartorioOptional.get();
-            if (!cartorio.getAtribuicoes().isEmpty()) {
+            if (cartorio.getAtribuicoes() != null && !cartorio.getAtribuicoes().isEmpty()) {
                 throw new ReferenciaExternaException("Registro utilizado em outro cadastro.");
             }
             cartorioRepository.delete(cartorio);
@@ -75,10 +77,51 @@ public class CartorioService {
         }
     }
 
+
     private void validateNomeDuplicado(Integer id, String nome) {
         Optional<Cartorio> cartorioOptional = cartorioRepository.findByNome(nome);
         if (cartorioOptional.isPresent() && !cartorioOptional.get().getId().equals(id)) {
             throw new CartorioDuplicadoException("Nome já informado no registro com código " + cartorioOptional.get().getId());
         }
     }
+
+    public List<Cartorio> findCartoriosByNome(String nome) {
+        return cartorioRepository.findCartoriosByNome(nome);
+    }
+
+    public Optional<Cartorio> findByNome(String nome) {
+        return cartorioRepository.findByNome(nome);
+    }
+
+
+
+
+    //fins de testes
+  /*  @Transactional
+    public List<CartorioDTO> createMultiple(List<CartorioDTO> cartoriosDTO) {
+        List<CartorioDTO> savedCartoriosDTO = new ArrayList<>();
+
+        for (CartorioDTO cartorioDTO : cartoriosDTO) {
+            // Verifica se já existe um cartório com o mesmo ID
+            Optional<Cartorio> existingCartorioOptional = cartorioRepository.findById(cartorioDTO.getId());
+            if (existingCartorioOptional.isPresent()) {
+                throw new CartorioDuplicadoException("Registro já cadastrado com o ID: " + cartorioDTO.getId());
+            }
+
+            // Verifica se já existe um cartório com o mesmo nome
+            validateNomeDuplicado(null, cartorioDTO.getNome());
+
+            // Converte o DTO para a entidade Cartorio
+            Cartorio cartorio = new Cartorio(cartorioDTO);
+
+            // Salva o cartório no repositório
+            Cartorio savedCartorio = cartorioRepository.save(cartorio);
+
+            // Adiciona o DTO do cartório salvo à lista de retorno
+            savedCartoriosDTO.add(new CartorioDTO(savedCartorio));
+        }
+
+        return savedCartoriosDTO;
+    }*/
+
 }

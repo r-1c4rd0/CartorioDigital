@@ -42,4 +42,8 @@ public class SituacaoService {
     public void delete(String id) {
         situacaoRepository.deleteById(id);
     }
+
+    public List<Situacao> findSituacoesByNome(String nome) {
+        return situacaoRepository.findSituacoesByNome(nome);
+    }
 }

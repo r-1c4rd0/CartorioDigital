@@ -44,4 +44,8 @@ public class AtribuicaoService {
     public void delete(String id) {
         atribuicaoRepository.deleteById(id);
     }
+
+    public List<Atribuicao> findAtribuicoesByNome(String nome) {
+        return atribuicaoRepository.findAtribuicoesByNome(nome);
+    }
 }
